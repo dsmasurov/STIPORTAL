@@ -63,7 +63,6 @@ from django import forms
 class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
-        model.description = 'file'
         fields = ('document',)
 
 @login_required
@@ -72,7 +71,9 @@ def NIRS_detail_view(request,pk):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            doc = form.save(commit=False)
+            doc.nirs = NIRS_id
+            doc.save()
             return redirect('index')
     else:
         form = DocumentForm()
