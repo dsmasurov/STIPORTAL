@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Все статьи</h1>
+
+    {% if article_list %}
+    <ul>
+
+      {% for article in article_list %}
+      <li>
+        {{ article.title }}
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>На данный момент у вас нет ни одной(.</p>
+    {% endif %} 
+{% endblock %}

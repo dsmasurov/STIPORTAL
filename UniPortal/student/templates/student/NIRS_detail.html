@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>{{nirs.title}}</h2>
+  <h4>Авторы</h4>
+  {% for N in nirs.authors.all %}
+      <li><strong>{{N.surname}} {{N.name}}</strong></li>
+  {% endfor %}
+  <h4>Руководитель</h4>
+  <strong>{{nirs.supervisor.surname}} {{nirs.supervisor.name}} {{nirs.supervisor.patronymic}}</strong>
+  <hr>
+  <h4>Загрузка файлов НИРС</h4>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+{% endblock %}
