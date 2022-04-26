@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/', views.index, name='index'),
+    path('profile/', views.profile, name='profile'),
 ]
 
 from django.urls import include
@@ -27,9 +30,7 @@ urlpatterns += [
 
 # Добавьте URL соотношения, чтобы перенаправить запросы с корневого URL, на URL приложения
 from django.views.generic import RedirectView
-urlpatterns += [
-    path('', RedirectView.as_view(url='/student/', permanent=True)),
-]
+urlpatterns += [path('', RedirectView.as_view(url='/home/', permanent=True)),]
 
 # Используйте static() чтобы добавить соотношения для статических файлов
 # Только на период разработки

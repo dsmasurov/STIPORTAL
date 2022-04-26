@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 @login_required
-def index(request):
+def profile(request):
     """
     Функция отображения для домашней страницы сайта.
     """
@@ -40,7 +40,7 @@ def index(request):
     # переменной контекста context
     return render(
         request,
-        'index.html',
+        'profile.html',
         context={
             'surname':surname,
             'name':name,
@@ -74,7 +74,7 @@ def NIRS_detail_view(request,pk):
             doc = form.save(commit=False)
             doc.nirs = NIRS_id
             doc.save()
-            return redirect('index')
+            return redirect('profile')
     else:
         form = DocumentForm()
     return render(
