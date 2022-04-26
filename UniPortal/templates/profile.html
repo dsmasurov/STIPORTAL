@@ -1,44 +1,85 @@
 {% extends "base_generic.html" %}
+{% block css %}{% load static %}<link rel="stylesheet" href="{% static 'css/Profile.css' %}" media="screen">{% endblock %}
+{% block content1 %}
 
-{% block content %}
-<h2>Студент</h2>
+  <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-19bb"><div class="u-clearfix u-sheet u-valign-top u-sheet-1">
+{% endblock %}
+{% block content2 %}        
+    <section class="u-clearfix u-lightbox u-section-1" id="sec-3178">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-default u-text-1">Студент</h1>
+        <h2 class="u-custom-font u-font-open-sans u-text u-text-default u-text-2">{{ surname }} {{ name }} {{ patronymic }}</h2>
+        <h3 class="u-align-left u-custom-font u-font-open-sans u-text u-text-3">Группа:</h3>
+        <h4 class="u-align-left u-text u-text-4">{{ group }}</h4>
+        <h3 class="u-custom-font u-font-open-sans u-text u-text-default u-text-5">Курс:</h3>
+        <h4 class="u-text u-text-default u-text-6">{{ course }}</h4>
+        <hr>
+        {% if user.is_authenticated %}
+          <h3 class="u-custom-font u-font-open-sans u-text u-text-default u-text-5">Пользователь: {{ user.get_username }}</h3>
+          <h3 class="u-custom-font u-font-open-sans u-text u-text-default u-text-5"><a href="{% url 'login'%}?next={{request.path}}">Выйти</a></h3>
+        {% endif %} 
+        
+        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  <h4 class="u-text u-text-default u-text-7">Ваши НИРС</h4>
+                  <ul class="u-text u-text-8">
+                    {% if nirs %}
+                  
+                      {% for N in nirs %}
+                      <li>
+                        <a href="{{ N.get_absolute_url }}">{{N.title}}</a> <br>({{N.supervisor}})
+                      </li>
+                      {% endfor %}
+                  
+                  </ul>
+                    {% else %}
+                      <p>На данный момент вы не принимали участие в НИРС.</p>
+                    {% endif %} 
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <h4 class="u-text u-text-default u-text-9">Ваши статьи</h4>
+                  <ul class="u-text u-text-10">
+                    {% if articles %}
 
-  <p>Ваши данные:</p>
-  <ul>
-    <li><strong>Фамилия:</strong> {{ surname }}</li>
-    <li><strong>Имя:</strong> {{ name }}</li>
-    <li><strong>Отчество:</strong> {{ patronymic }}</li>
-  </ul>
-<h3>Ваши НИРС</h3>
+                      {% for article in articles %}
+                        <li>
+                          {{article.title}}
+                        </li>
+                      {% endfor %}
+                      </ul>
+                    {% else %}
+                      <p>На данный момент у вас нет ни одной(.</p>
+                    {% endif %} 
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
+                <div class="u-container-layout u-container-layout-3">
+                  <h4 class="u-text u-text-default u-text-11">Ваши олимпиады и конференции</h4>
+                  <ul class="u-text u-text-10">
+                    {% if comp %}
 
-  {% if nirs %}
-  <ul>
-
-    {% for N in nirs %}
-    <li>
-      <a href="{{ N.get_absolute_url }}">{{N.title}}</a> ({{N.supervisor}})
-    </li>
-    {% endfor %}
-
-  </ul>
-  {% else %}
-    <p>На данный момент вы не принимали участие в НИРС.</p>
-  {% endif %} 
-<h3>Ваши статьи</h3>
-
-    {% if articles %}
-    <ul>
-
-      {% for article in articles %}
-      <li>
-        {{article.title}}
-      </li>
-      {% endfor %}
-
-    </ul>
-    {% else %}
-      <p>На данный момент у вас нет ни одной(.</p>
-    {% endif %} 
-
-<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+                      {% for C in comp %}
+                        <li>
+                          {{C.title}}
+                        </li>
+                      {% endfor %}
+                      </ul>
+                    {% else %}
+                      <p>На данный момент вы не учавствовали ни в одной конференции или олимпиаде.</p>
+                    {% endif %} 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </body>
+</html>
 {% endblock %}

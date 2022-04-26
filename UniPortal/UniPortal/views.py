@@ -27,6 +27,8 @@ def profile(request):
         surname = stud.surname
         name = stud.name
         patronymic = stud.patronymic
+        course = stud.course
+        group = stud.group
         
     num_visits=request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits+1
@@ -43,6 +45,12 @@ def profile(request):
             if stud.name in x:
                 user_nirs.append(nirs)
 
+    user_comp = []
+    for comp in Competitions.objects.all():
+        for x in comp.authors_list():
+            if stud.name in x:
+                user_comp.append(comp)
+
     # Отрисовка HTML-шаблона index.html с данными внутри
     # переменной контекста context
     return render(
@@ -52,8 +60,11 @@ def profile(request):
             'surname':surname,
             'name':name,
             'patronymic':patronymic,
+            'course': course,
+            'group': group,
             'num_visits':num_visits,
             'articles' :user_articles,
-            'nirs': user_nirs
+            'nirs': user_nirs,
+            'comp': user_comp
             }
     )

@@ -14,15 +14,13 @@
 
 .u-section-1 .u-text-3 {
   font-weight: 400;
-  width: 103px;
-  margin: 20px auto 0 47px;
+  margin: 20px 982px 0 47px;
 }
 
 .u-section-1 .u-text-4 {
   font-style: italic;
-  width: 66px;
   font-weight: normal;
-  margin: -29px auto 0 170px;
+  margin: -29px 904px 0 170px;
 }
 
 .u-section-1 .u-text-5 {
@@ -38,7 +36,6 @@
 .u-section-1 .u-layout-wrap-1 {
   margin-top: 20px;
   margin-bottom: 11px;
-  min-height: 400px;
 }
 
 .u-section-1 .u-layout-cell-1 {
@@ -87,9 +84,7 @@
 }
 
 .u-section-1 .u-text-12 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 0;
+  margin: 20px 193px 0 0;
 }
 
 @media (max-width: 1199px) {
@@ -97,9 +92,19 @@
     min-height: 584px;
   }
 
+  .u-section-1 .u-text-3 {
+    width: 103px;
+    margin-right: 782px;
+  }
+
+  .u-section-1 .u-text-4 {
+    width: 66px;
+    margin-right: 804px;
+    margin-left: 70px;
+  }
+
   .u-section-1 .u-layout-wrap-1 {
     position: relative;
-    min-height: 190px;
   }
 
   .u-section-1 .u-layout-cell-1 {
@@ -112,6 +117,10 @@
 
   .u-section-1 .u-layout-cell-3 {
     min-height: 330px;
+  }
+
+  .u-section-1 .u-text-12 {
+    margin-right: 126px;
   }
 }
 
@@ -120,6 +129,15 @@
     min-height: 354px;
   }
 
+  .u-section-1 .u-text-3 {
+    margin-right: 562px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 654px;
+    margin-left: 0;
+  }
+
   .u-section-1 .u-layout-cell-1 {
     min-height: 100px;
   }
@@ -131,11 +149,23 @@
   .u-section-1 .u-layout-cell-3 {
     min-height: 100px;
   }
+
+  .u-section-1 .u-text-12 {
+    margin-right: 53px;
+  }
 }
 
 @media (max-width: 767px) {
   .u-section-1 .u-sheet-1 {
     min-height: 454px;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-right: 382px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 474px;
   }
 
   .u-section-1 .u-container-layout-1 {
@@ -155,11 +185,20 @@
 }
 
 @media (max-width: 575px) {
+  .u-section-1 .u-text-3 {
+    margin-right: 182px;
+  }
+
   .u-section-1 .u-text-4 {
+    margin-right: 274px;
     margin-left: 107px;
   }
 
   .u-section-1 .u-text-6 {
     margin-left: 107px;
+  }
+
+  .u-section-1 .u-text-12 {
+    margin-right: 0;
   }
 }

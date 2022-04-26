@@ -71,6 +71,9 @@ class Competitions(models.Model):
     place = models.CharField(max_length=200, default='СТИ НИЯУ "МИФИ"')
     date_of_the_event = models.DateField(null=True, blank=True)
 
+    def authors_list(self):
+        return [author.name for author in self.authors.all()]
+
     class Meta:
         ordering = ["date_of_the_event"]
 
