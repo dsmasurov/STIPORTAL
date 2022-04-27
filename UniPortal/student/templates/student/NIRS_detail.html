@@ -40,21 +40,28 @@
                       </colgroup>
                       <tbody class="u-table-body">
                         <tr style="height: 97px;">
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"><span class="u-icon u-icon-4"><svg class="u-svg-content" viewBox="0 0 60 60" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M38.914,0H6.5v60h47V14.586L38.914,0z M17.5,14h10c0.552,0,1,0.447,1,1s-0.448,1-1,1h-10c-0.552,0-1-0.447-1-1
-	S16.948,14,17.5,14z M42.5,48h-25c-0.552,0-1-0.447-1-1s0.448-1,1-1h25c0.552,0,1,0.447,1,1S43.052,48,42.5,48z M42.5,40h-25
-	c-0.552,0-1-0.447-1-1s0.448-1,1-1h25c0.552,0,1,0.447,1,1S43.052,40,42.5,40z M42.5,32h-25c-0.552,0-1-0.447-1-1s0.448-1,1-1h25
-	c0.552,0,1,0.447,1,1S43.052,32,42.5,32z M42.5,24h-25c-0.552,0-1-0.447-1-1s0.448-1,1-1h25c0.552,0,1,0.447,1,1S43.052,24,42.5,24z
-	 M37.5,16V2l14,14H37.5z"></path></svg><img></span>
-                          </td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"></td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"></td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"></td>
+                            {% for doc in docs %}
+                              {% if doc.nirs == nirs%}
+                              <td class="u-border-1 u-border-grey-dark-1 u-table-cell">
+                                <span class="u-file-link u-icon u-icon-4" data-href=document/{{doc.id}}><svg class="u-svg-content" viewBox="0 0 60 60" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M38.914,0H6.5v60h47V14.586L38.914,0z M17.5,14h10c0.552,0,1,0.447,1,1s-0.448,1-1,1h-10c-0.552,0-1-0.447-1-1
+                                  S16.948,14,17.5,14z M42.5,48h-25c-0.552,0-1-0.447-1-1s0.448-1,1-1h25c0.552,0,1,0.447,1,1S43.052,48,42.5,48z M42.5,40h-25
+                                  c-0.552,0-1-0.447-1-1s0.448-1,1-1h25c0.552,0,1,0.447,1,1S43.052,40,42.5,40z M42.5,32h-25c-0.552,0-1-0.447-1-1s0.448-1,1-1h25
+                                  c0.552,0,1,0.447,1,1S43.052,32,42.5,32z M42.5,24h-25c-0.552,0-1-0.447-1-1s0.448-1,1-1h25c0.552,0,1,0.447,1,1S43.052,24,42.5,24z
+                                   M37.5,16V2l14,14H37.5z"></path></svg><img></span>
+                              </td>
+                              {% endif %}
+                            {% endfor %}
+                            
                         </tr>
                         <tr style="height: 41px;">
-                          <td class="u-align-center u-border-1 u-border-grey-dark-1 u-table-cell">2022-04-26</td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"></td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"></td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"></td>
+                            {% for doc in docs %}
+                              {% if doc.nirs == nirs%}
+                              <td class="u-align-center u-border-1 u-border-grey-dark-1 u-table-cell">
+                              {{doc.uploaded_at}}
+                              </td>
+                              {% endif %}
+                            {% endfor %}
+                          
                         </tr>
                       </tbody>
                     </table>
@@ -71,7 +78,18 @@
               </div>
             </div>
           </div>
-        </div><span class="u-file-icon u-icon u-icon-5"><img src="{% static 'images/5278624.png' %}" alt=""></span><span class="u-icon u-text-grey-25 u-icon-6" data-href="#"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 60 60" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-88f8"></use></svg><svg class="u-svg-content" viewBox="0 0 60 60" x="0px" y="0px" id="svg-88f8" style="enable-background:new 0 0 60 60;"><path d="M38.914,0H6.5v60h47V14.586L38.914,0z M24.125,41.781l-5,4C18.941,45.928,18.72,46,18.5,46
+        </div>
+      {% if nirs.status == '2' %} 
+        <span class="u-file-icon u-icon u-icon-5">
+        <img src="{% static 'images/5278624.png' %}" alt="" style="margin-left: 117px;"></span> 
+      {% elif nirs.status == '3' %}
+        <span class="u-file-icon u-icon u-icon-5">
+        <img src="{% static 'images/5278624.png' %}" alt="" style="margin-left: 234px;"></span> 
+      {% else %}
+        <span class="u-file-icon u-icon u-icon-5">
+        <img src="{% static 'images/5278624.png' %}" alt="" style="margin-left: 0px;"></span> 
+      {% endif %}
+          <span class="u-icon u-text-grey-25 u-icon-6" data-href="#"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 60 60" style=""><use xmlns:xlink="" xlink:href="#svg-88f8"></use></svg><svg class="u-svg-content" viewBox="0 0 60 60" x="0px" y="0px" id="svg-88f8" style="enable-background:new 0 0 60 60;"><path d="M38.914,0H6.5v60h47V14.586L38.914,0z M24.125,41.781l-5,4C18.941,45.928,18.72,46,18.5,46
 	c-0.257,0-0.514-0.099-0.708-0.293l-2-2c-0.391-0.391-0.391-1.023,0-1.414s1.023-0.391,1.414,0l1.367,1.367l4.301-3.441
 	c0.43-0.345,1.061-0.275,1.405,0.156C24.626,40.807,24.556,41.436,24.125,41.781z M24.125,30.781l-5,4
 	C18.941,34.928,18.72,35,18.5,35c-0.257,0-0.514-0.099-0.708-0.293l-2-2c-0.391-0.391-0.391-1.023,0-1.414s1.023-0.391,1.414,0
@@ -84,7 +102,6 @@
         <h4 class="u-text u-text-9">Техническое задание</h4>
       </div>
     </section>
-    
   </body>
 </html>
 {% endblock %}    

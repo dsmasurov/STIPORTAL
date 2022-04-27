@@ -38,6 +38,13 @@ class NIRS(models.Model):
     supervisor = models.ForeignKey('Supervisor', on_delete=models.SET_NULL, null=True)
     date_of_start = models.DateField(null=True, blank=True)
     date_of_finish = models.DateField('Complete',null=True, blank=True)
+    statuses = (
+        ('1', 'plan'),
+        ('2', 'work'),
+        ('3', 'finish'),
+    )
+
+    status = models.CharField(max_length=1, choices=statuses, blank=True, default='1')
 
     def authors_list(self):
         return [author.name for author in self.authors.all()]
@@ -86,5 +93,5 @@ class Competitions(models.Model):
 class Document(models.Model):
     description = models.CharField(max_length=255, blank=True)
     nirs = models.ForeignKey('NIRS', on_delete=models.SET_NULL, null=True)
-    document = models.FileField(upload_to='documents/%Y/%m/%d/')
+    document = models.FileField(upload_to='static/documents/%Y/%m/%d/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
